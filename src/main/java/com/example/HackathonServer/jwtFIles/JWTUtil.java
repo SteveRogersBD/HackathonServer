@@ -61,7 +61,7 @@ public class JWTUtil {
     public String createJWTFromUsername(String username)
     {
         return Jwts.builder().setSubject(username).setIssuedAt(new Date(System.currentTimeMillis())).
-                expiration(new Date(System.currentTimeMillis()+60*60*30))
+                expiration(new Date(System.currentTimeMillis()+60*60*30000))
                 .signWith(key())
                 .compact();
     }

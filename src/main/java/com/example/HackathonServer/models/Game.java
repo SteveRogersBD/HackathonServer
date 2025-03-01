@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Data
+@Table(name = "game")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -26,13 +27,15 @@ public class Game {
     @NonNull
     private long duration;
     @NonNull
+    @Enumerated(EnumType.STRING)
     private Type gameType;
     @NonNull
     private int score;
-    @NonNull
+
+    //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name="user_id",nullable = false)
-    private User user;
+    @JoinColumn(name = "child_id", nullable = false)
+    private Child child;
 
     @PrePersist
     public void initializeTime() {

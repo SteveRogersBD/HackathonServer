@@ -13,6 +13,13 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
+    @GetMapping("/id/{id}")
+    public ApiResponse<Game> getGameById(@PathVariable Long id)
+    {
+        Game game = gameService.getById(id);
+        return ApiResponse.onSuccess("Retrieved Successfully", game);
+    }
+
     @PostMapping()
     public ApiResponse<Game> createGame(@RequestBody Game game)
     {
