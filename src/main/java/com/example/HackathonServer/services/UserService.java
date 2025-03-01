@@ -29,6 +29,13 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
+
+    public User getById(Long id)
+    {
+        User user = userRepo.findById(id).orElseThrow(
+                ()->new UsernameNotFoundException("User not found with id "+id));
+        return user;
+    }
     public boolean verify(String username, String password)
     {
         Authentication authentication = authenticationManager.
@@ -60,5 +67,13 @@ public class UserService {
 
         return jwtUtil.createJWTFromUsername(user.getUsername());
     }
+
+    public int numberOfChildren(Long id)
+    {
+        User user = getById(id);
+        return user.getChildren().size();
+    }
+
+
 
 }

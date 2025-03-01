@@ -2,11 +2,13 @@ package com.example.HackathonServer.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,7 +28,7 @@ public class User {
     private String email;
 
     @Column(nullable=false)
-    //@Size(min=6,max=15,message="Password must me 6 to 15 characters long!!!" )
+    @Size(min=6,max=15,message="Password must me 6 to 15 characters long!!!" )
     private String password;
 
     private String role;
@@ -35,6 +37,10 @@ public class User {
     private String about;
 
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "parent",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Child>children;
+
 
     @PrePersist
     protected void onCreate()

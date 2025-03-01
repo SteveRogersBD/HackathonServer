@@ -17,16 +17,16 @@ public class GlobalExceptionHandler {
     public ApiResponse<Object> handleUserNotFound(UserNotFoundException e) {
         return ApiResponse.onError(e.getMessage());
     }
-    @ExceptionHandler(PostNotFoundException.class)
+    @ExceptionHandler(GameNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiResponse<Object>handlePostNotFound(PostNotFoundException e){
+    public ApiResponse<Object>handlePostNotFound(GameNotFoundException e){
         return ApiResponse.onError(e.getMessage());
     }
-    @ExceptionHandler(CommentNotFoundException.class)
+    @ExceptionHandler(ChildNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiResponse<Object>handleCommentNotFound(CommentNotFoundException e){
+    public ApiResponse<Object>handleCommentNotFound(ChildNotFoundException e){
         return ApiResponse.onError(e.getMessage());
     }
     @ExceptionHandler(Exception.class)
